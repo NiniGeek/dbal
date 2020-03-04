@@ -96,6 +96,11 @@ class PostgreSqlPlatform extends AbstractPlatform
         return sprintf('POSITION(%s IN %s)', $substring, $string);
     }
 
+    public function getConcatExpression(string ...$string) : string
+    {
+        return sprintf('CONCAT(%s)', implode(', ', $string));
+    }
+
     protected function getDateArithmeticIntervalExpression(string $date, string $operator, string $interval, string $unit) : string
     {
         if ($unit === DateIntervalUnit::QUARTER) {
